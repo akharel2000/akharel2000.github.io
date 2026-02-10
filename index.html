@@ -3,806 +3,267 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ayub Kharel — DPhil in Statistics, Oxford</title>
+    <title>Ayub Kharel</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg: #0a0a0f;
-            --surface: #12121a;
-            --border: #1e1e2e;
-            --text: #e4e4e7;
-            --text-muted: #8888a0;
-            --accent: #6c63ff;
-            --accent-glow: rgba(108, 99, 255, 0.3);
-            --gradient-1: #6c63ff;
-            --gradient-2: #00d4ff;
-            --gradient-3: #ff6b9d;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.7;
-            overflow-x: hidden;
+            font-family: 'EB Garamond', Georgia, serif;
+            color: #1a1a1a;
+            background: #fafaf8;
+            line-height: 1.8;
+            font-size: 18px;
         }
 
-        /* Animated gradient background */
-        .bg-gradient {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
+        a { color: #002147; }
+        a:hover { color: #4a4a4a; }
 
-        .bg-gradient .orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.15;
-            animation: float 20s ease-in-out infinite;
-        }
-
-        .orb-1 {
-            width: 600px;
-            height: 600px;
-            background: var(--gradient-1);
-            top: -200px;
-            right: -100px;
-            animation-delay: 0s !important;
-        }
-
-        .orb-2 {
-            width: 500px;
-            height: 500px;
-            background: var(--gradient-2);
-            bottom: -150px;
-            left: -100px;
-            animation-delay: -7s !important;
-        }
-
-        .orb-3 {
-            width: 400px;
-            height: 400px;
-            background: var(--gradient-3);
-            top: 40%;
-            left: 50%;
-            animation-delay: -14s !important;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(60px, -40px) scale(1.1); }
-            66% { transform: translate(-40px, 30px) scale(0.9); }
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 100;
-            padding: 1.2rem 2rem;
-            backdrop-filter: blur(20px);
-            background: rgba(10, 10, 15, 0.7);
-            border-bottom: 1px solid var(--border);
-            transition: all 0.3s ease;
-        }
-
-        nav .nav-inner {
-            max-width: 1100px;
+        .container {
+            max-width: 780px;
             margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        header {
+            border-bottom: 1px solid #ddd;
+            padding: 1.2rem 0;
+            margin-bottom: 3rem;
+        }
+
+        header .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        nav .logo {
-            font-weight: 700;
+        header .name {
             font-size: 1.1rem;
-            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        nav .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            margin-left: 2rem;
-            font-size: 0.9rem;
             font-weight: 500;
-            transition: color 0.3s;
-            position: relative;
-        }
-
-        nav .nav-links a:hover {
-            color: var(--text);
-        }
-
-        nav .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2));
-            transition: width 0.3s;
-        }
-
-        nav .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 6rem 2rem 4rem;
-        }
-
-        .hero-content {
-            max-width: 1100px;
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .hero-text .greeting {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            color: var(--accent);
-            margin-bottom: 1rem;
-            opacity: 0;
-            animation: fadeUp 0.8s ease forwards;
-        }
-
-        .hero-text h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            line-height: 1.15;
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            animation: fadeUp 0.8s ease 0.15s forwards;
-        }
-
-        .hero-text h1 .gradient-text {
-            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2), var(--gradient-3));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            background-size: 200% 200%;
-            animation: gradientShift 5s ease infinite;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .hero-text .tagline {
-            font-size: 1.15rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-            max-width: 500px;
-            opacity: 0;
-            animation: fadeUp 0.8s ease 0.3s forwards;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            opacity: 0;
-            animation: fadeUp 0.8s ease 0.45s forwards;
-        }
-
-        .btn {
-            padding: 0.75rem 1.8rem;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            font-weight: 600;
+            color: #1a1a1a;
             text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
-            font-family: inherit;
+            letter-spacing: 0.02em;
         }
 
-        .btn-primary {
-            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
-            color: white;
-            box-shadow: 0 4px 20px var(--accent-glow);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px var(--accent-glow);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--text);
-            border: 1px solid var(--border);
-        }
-
-        .btn-outline:hover {
-            border-color: var(--accent);
-            background: rgba(108, 99, 255, 0.05);
-            transform: translateY(-2px);
-        }
-
-        /* Photo card */
-        .hero-visual {
-            display: flex;
-            justify-content: center;
-            opacity: 0;
-            animation: fadeUp 0.8s ease 0.3s forwards;
-        }
-
-        .photo-card {
-            position: relative;
-            width: 320px;
-            height: 400px;
-            border-radius: 24px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-        }
-
-        .photo-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .photo-card .overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 2rem 1.5rem 1.5rem;
-            background: linear-gradient(transparent, rgba(10, 10, 15, 0.95));
-        }
-
-        .photo-card .overlay .location {
+        nav a {
+            font-family: 'Inter', sans-serif;
             font-size: 0.8rem;
-            color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
+            color: #666;
+            text-decoration: none;
+            margin-left: 1.8rem;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
         }
 
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background: #22c55e;
-            border-radius: 50%;
-            display: inline-block;
-            animation: pulse 2s ease-in-out infinite;
+        nav a:hover { color: #1a1a1a; }
+
+        /* Profile section */
+        .profile {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 2.5rem;
+            align-items: start;
+            margin-bottom: 3rem;
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
+        .profile img {
+            width: 200px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .profile h1 {
+            font-size: 2rem;
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+        }
+
+        .profile .affiliation {
+            font-size: 1.05rem;
+            color: #555;
+            margin-bottom: 1.2rem;
+        }
+
+        .profile .bio {
+            color: #333;
+            font-size: 1.05rem;
         }
 
         /* Sections */
         section {
-            padding: 6rem 2rem;
+            margin-bottom: 2.5rem;
         }
 
-        .section-inner {
-            max-width: 1100px;
-            margin: 0 auto;
+        h2 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 1px solid #ddd;
         }
 
-        .section-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 0.75rem;
+        /* Research list */
+        .research-list {
+            list-style: none;
         }
 
-        .section-title {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
+        .research-list li {
+            padding: 0.4rem 0;
+            color: #333;
         }
 
-        /* About */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 3rem;
+        .research-list li::before {
+            content: "\2022";
+            color: #002147;
+            margin-right: 0.6rem;
         }
 
-        .about-text p {
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-        }
-
-        .info-cards {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .info-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 1.25rem;
-            transition: all 0.3s ease;
-        }
-
-        .info-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(108, 99, 255, 0.1);
-        }
-
-        .info-card .label {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.4rem;
-        }
-
-        .info-card .value {
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        /* Research interests */
-        .interests-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .interest-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 2rem;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .interest-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2));
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .interest-card:hover::before {
-            opacity: 1;
-        }
-
-        .interest-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(108, 99, 255, 0.1);
-        }
-
-        .interest-card .icon {
-            font-size: 2rem;
+        /* Education */
+        .edu-item {
             margin-bottom: 1rem;
         }
 
-        .interest-card h3 {
-            font-size: 1.15rem;
-            margin-bottom: 0.75rem;
+        .edu-item .degree {
+            font-weight: 500;
         }
 
-        .interest-card p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
+        .edu-item .school {
+            color: #555;
         }
 
-        /* Education timeline */
-        .timeline {
-            position: relative;
-            padding-left: 3rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(180deg, var(--gradient-1), var(--gradient-2), transparent);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 2.5rem;
-            padding: 1.5rem;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            transition: all 0.3s ease;
-        }
-
-        .timeline-item:hover {
-            border-color: var(--accent);
-            transform: translateX(8px);
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -2.35rem;
-            top: 1.8rem;
-            width: 12px;
-            height: 12px;
-            background: var(--accent);
-            border-radius: 50%;
-            border: 3px solid var(--bg);
-            box-shadow: 0 0 10px var(--accent-glow);
-        }
-
-        .timeline-item .year {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            color: var(--accent);
-            margin-bottom: 0.3rem;
-        }
-
-        .timeline-item h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .timeline-item .institution {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        .timeline-item .details {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            margin-top: 0.5rem;
+        .edu-item .detail {
+            font-size: 0.95rem;
+            color: #666;
+            font-style: italic;
         }
 
         /* Contact */
-        .contact-section {
-            text-align: center;
-        }
-
-        .contact-section .section-inner {
-            max-width: 700px;
-        }
-
-        .contact-section p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-link {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            padding: 0.8rem 1.5rem;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            color: var(--text);
-            text-decoration: none;
+        .contact-list {
+            list-style: none;
+            font-family: 'Inter', sans-serif;
             font-size: 0.9rem;
-            transition: all 0.3s ease;
         }
 
-        .contact-link:hover {
-            border-color: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.15);
+        .contact-list li {
+            padding: 0.3rem 0;
         }
 
-        .contact-link svg {
-            width: 18px;
-            height: 18px;
-            fill: var(--accent);
+        .contact-list a {
+            color: #002147;
+            text-decoration: none;
+        }
+
+        .contact-list a:hover {
+            text-decoration: underline;
         }
 
         /* Footer */
         footer {
+            margin-top: 4rem;
+            padding: 1.5rem 0;
+            border-top: 1px solid #ddd;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            color: #999;
             text-align: center;
-            padding: 2rem;
-            border-top: 1px solid var(--border);
-            color: var(--text-muted);
-            font-size: 0.8rem;
-        }
-
-        /* Animations */
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            .hero-content {
+        @media (max-width: 600px) {
+            .profile {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
 
-            .hero-text h1 {
-                font-size: 2.5rem;
+            .profile img {
+                margin: 0 auto;
             }
 
-            .hero-buttons {
-                justify-content: center;
-            }
-
-            .hero-visual {
-                order: -1;
-            }
-
-            .photo-card {
-                width: 250px;
-                height: 320px;
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
-
-            nav .nav-links a {
+            nav a {
                 margin-left: 1rem;
-                font-size: 0.8rem;
             }
         }
     </style>
 </head>
 <body>
 
-<div class="bg-gradient">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-</div>
-
-<nav>
-    <div class="nav-inner">
-        <div class="logo">AK</div>
-        <div class="nav-links">
-            <a href="#about">About</a>
+<header>
+    <div class="container">
+        <a href="/" class="name">Ayub Kharel</a>
+        <nav>
             <a href="#research">Research</a>
             <a href="#education">Education</a>
             <a href="#contact">Contact</a>
-        </div>
+        </nav>
     </div>
-</nav>
+</header>
 
-<!-- Hero -->
-<section class="hero">
-    <div class="hero-content">
-        <div class="hero-text">
-            <div class="greeting">// hello world</div>
-            <h1>I'm <span class="gradient-text">Ayub Kharel</span></h1>
-            <p class="tagline">
-                DPhil student in Statistics at the University of Oxford, exploring deep learning theory, causal inference, and the foundations of intelligent systems.
+<main class="container">
+
+    <div class="profile">
+        <img src="photo.jpg" alt="Ayub Kharel">
+        <div>
+            <h1>Ayub Kharel</h1>
+            <p class="affiliation">
+                DPhil Student in Statistics<br>
+                University of Oxford
             </p>
-            <div class="hero-buttons">
-                <a href="#research" class="btn btn-primary">My Research</a>
-                <a href="#contact" class="btn btn-outline">Get in Touch</a>
-            </div>
-        </div>
-        <div class="hero-visual">
-            <div class="photo-card">
-                <img src="photo.jpg" alt="Ayub Kharel" onerror="this.parentElement.innerHTML='<div style=&quot;width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#6c63ff,#00d4ff);font-size:5rem;font-weight:700;color:white&quot;>AK</div>'">
-                <div class="overlay">
-                    <div class="location">
-                        <span class="status-dot"></span>
-                        Oxford, UK
-                    </div>
-                </div>
-            </div>
+            <p class="bio">
+                I am a DPhil student in the Department of Statistics at the University of Oxford, supervised by Robin Evans and working within the Computational Statistics and Machine Learning group. My research interests lie in deep learning theory, causal inference, and structured reasoning and security in foundation models.
+            </p>
         </div>
     </div>
-</section>
 
-<!-- About -->
-<section id="about">
-    <div class="section-inner reveal">
-        <div class="section-label">About</div>
-        <h2 class="section-title">A bit about me</h2>
-        <div class="about-grid">
-            <div class="about-text">
-                <p>
-                    I'm a DPhil student in the Department of Statistics at the University of Oxford, working within the Computational Statistics and Machine Learning group. My research sits at the intersection of mathematics and modern AI.
-                </p>
-                <p>
-                    I'm particularly interested in understanding the theoretical foundations of deep learning, developing principled approaches to causal inference, and investigating structured reasoning and security in foundation models.
-                </p>
-                <p>
-                    Before starting my DPhil, I studied Mathematics at the undergraduate level with a focus on probability and stochastic processes, followed by an MSc in Mathematical Sciences at Oxford where I worked on stochastic analysis, machine learning, and diffusion model theory.
-                </p>
-            </div>
-            <div class="info-cards">
-                <div class="info-card">
-                    <div class="label">Role</div>
-                    <div class="value">DPhil Student</div>
-                </div>
-                <div class="info-card">
-                    <div class="label">Department</div>
-                    <div class="value">Statistics, Oxford</div>
-                </div>
-                <div class="info-card">
-                    <div class="label">Group</div>
-                    <div class="value">Computational Statistics & ML</div>
-                </div>
-                <div class="info-card">
-                    <div class="label">Office</div>
-                    <div class="value">Room 1.07</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+    <section id="research">
+        <h2>Research Interests</h2>
+        <ul class="research-list">
+            <li>Deep learning theory</li>
+            <li>Causal inference</li>
+            <li>Structured reasoning and security in foundation models</li>
+        </ul>
+    </section>
 
-<!-- Research -->
-<section id="research">
-    <div class="section-inner reveal">
-        <div class="section-label">Research</div>
-        <h2 class="section-title">What I work on</h2>
-        <div class="interests-grid">
-            <div class="interest-card">
-                <div class="icon">🧠</div>
-                <h3>Deep Learning Theory</h3>
-                <p>Understanding the mathematical underpinnings of why and how deep neural networks learn, generalise, and represent information.</p>
-            </div>
-            <div class="interest-card">
-                <div class="icon">🔗</div>
-                <h3>Causal Inference</h3>
-                <p>Developing methods to move beyond correlation and identify true cause-and-effect relationships from data.</p>
-            </div>
-            <div class="interest-card">
-                <div class="icon">🔐</div>
-                <h3>Foundation Model Security</h3>
-                <p>Investigating structured reasoning and security properties of large-scale foundation models.</p>
-            </div>
-        </div>
-    </div>
-</section>
+    <section id="education">
+        <h2>Education</h2>
 
-<!-- Education -->
-<section id="education">
-    <div class="section-inner reveal">
-        <div class="section-label">Education</div>
-        <h2 class="section-title">My journey</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="year">2024 — Present</div>
-                <h3>DPhil in Statistics</h3>
-                <div class="institution">University of Oxford</div>
-                <div class="details">Computational Statistics and Machine Learning group. Supervised by Robin Evans.</div>
-            </div>
-            <div class="timeline-item">
-                <div class="year">2023 — 2024</div>
-                <h3>MSc in Mathematical Sciences</h3>
-                <div class="institution">University of Oxford</div>
-                <div class="details">Stochastic analysis and machine learning. Dissertation on diffusion model theory.</div>
-            </div>
-            <div class="timeline-item">
-                <div class="year">Prior</div>
-                <h3>BSc in Mathematics</h3>
-                <div class="institution">University</div>
-                <div class="details">Focus on probability theory and stochastic processes.</div>
-            </div>
+        <div class="edu-item">
+            <div class="degree">DPhil in Statistics</div>
+            <div class="school">University of Oxford, 2024 &ndash; present</div>
+            <div class="detail">Computational Statistics and Machine Learning group</div>
         </div>
-    </div>
-</section>
 
-<!-- Contact -->
-<section id="contact" class="contact-section">
-    <div class="section-inner reveal">
-        <div class="section-label">Contact</div>
-        <h2 class="section-title">Let's connect</h2>
-        <p>I'm always happy to chat about research, maths, or anything interesting. Drop me a line.</p>
-        <div class="contact-links">
-            <a href="mailto:ayub.kharel@stats.ox.ac.uk" class="contact-link">
-                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                Email
-            </a>
-            <a href="https://github.com/akharel2000" class="contact-link" target="_blank">
-                <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-                GitHub
-            </a>
-            <a href="https://www.stats.ox.ac.uk/people/ayub-kharel" class="contact-link" target="_blank">
-                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-                Oxford Profile
-            </a>
+        <div class="edu-item">
+            <div class="degree">MSc in Mathematical Sciences</div>
+            <div class="school">University of Oxford, 2023 &ndash; 2024</div>
+            <div class="detail">Dissertation on diffusion model theory. Studied stochastic analysis and machine learning.</div>
         </div>
-    </div>
-</section>
+
+        <div class="edu-item">
+            <div class="degree">BSc in Mathematics</div>
+            <div class="school"></div>
+            <div class="detail">Focus on probability theory and stochastic processes.</div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <ul class="contact-list">
+            <li>Email: <a href="mailto:ayub.kharel@stats.ox.ac.uk">ayub.kharel@stats.ox.ac.uk</a></li>
+            <li>Office: Room 1.07, Department of Statistics</li>
+            <li>GitHub: <a href="https://github.com/akharel2000" target="_blank">github.com/akharel2000</a></li>
+            <li>Department: <a href="https://www.stats.ox.ac.uk/people/ayub-kharel" target="_blank">Oxford Statistics profile</a></li>
+        </ul>
+    </section>
+
+</main>
 
 <footer>
-    <p>&copy; 2025 Ayub Kharel. Built with curiosity.</p>
+    <div class="container">&copy; 2025 Ayub Kharel</div>
 </footer>
-
-<script>
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-            }
-        });
-    }, { threshold: 0.1 });
-
-    reveals.forEach(el => observer.observe(el));
-
-    // Navbar shadow on scroll
-    window.addEventListener('scroll', () => {
-        const nav = document.querySelector('nav');
-        if (window.scrollY > 50) {
-            nav.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.3)';
-        } else {
-            nav.style.boxShadow = 'none';
-        }
-    });
-</script>
 
 </body>
 </html>
